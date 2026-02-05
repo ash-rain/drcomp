@@ -222,4 +222,4 @@ sudo -u www-data bin/gpm update
 - **Email:** office@drcomp.org
 - **Skype:** drcomp_kz
 - **Facebook:** https://www.facebook.com/drcomp.org
-- **Location:** Kazanlak, Bulgaria
+- **Location:** ul. Hristo Botev 52, 6100 Kazanlak, Bulgaria
