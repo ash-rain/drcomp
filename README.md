@@ -1,156 +1,225 @@
-# ![](https://avatars1.githubusercontent.com/u/8237355?v=2&s=50) Grav
+# Доктор КОМП - GravCMS Website
 
-[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/phpstan/phpstan)
-[![Discord](https://img.shields.io/discord/501836936584101899.svg?logo=discord&colorB=728ADA&label=Discord%20Chat)](https://chat.getgrav.org)
- [![PHP Tests](https://github.com/getgrav/grav/workflows/PHP%20Tests/badge.svg?branch=develop)](https://github.com/getgrav/grav/actions?query=workflow%3A%22PHP+Tests%22) [![OpenCollective](https://opencollective.com/grav/tiers/backers/badge.svg?label=Backers&color=brightgreen)](#backers) [![OpenCollective](https://opencollective.com/grav/tiers/supporters/badge.svg?label=Supporters&color=brightgreen)](#supporters) [![OpenCollective](https://opencollective.com/grav/tiers/sponsors/badge.svg?label=Sponsors&color=brightgreen)](#sponsors)
+Computer store and service website built with GravCMS.
 
-Grav is a **Fast**, **Simple**, and **Flexible**, file-based Web-platform.  There is **Zero** installation required.  Just extract the ZIP archive, and you are already up and running.  It follows similar principles to other flat-file CMS platforms, but has a different design philosophy than most. Grav comes with a powerful **Package Management System** to allow for simple installation and upgrading of plugins and themes, as well as simple updating of Grav itself.
-
-The underlying architecture of Grav is designed to use well-established and _best-in-class_ technologies to ensure that Grav is simple to use and easy to extend. Some of these key technologies include:
-
-* [Twig Templating](https://twig.symfony.com/): for powerful control of the user interface
-* [Markdown](https://en.wikipedia.org/wiki/Markdown): for easy content creation
-* [YAML](https://yaml.org): for simple configuration
-* [Parsedown](https://parsedown.org/): for fast Markdown and Markdown Extra support
-* [Doctrine Cache](https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/caching.html): layer for performance
-* [Pimple Dependency Injection Container](https://github.com/silexphp/Pimple): for extensibility and maintainability
-* [Symfony Event Dispatcher](https://symfony.com/doc/current/components/event_dispatcher/introduction.html): for plugin event handling
-* [Symfony Console](https://symfony.com/doc/current/components/console/introduction.html): for CLI interface
-* [Gregwar Image Library](https://github.com/Gregwar/Image): for dynamic image manipulation
-
-# Requirements
-
-- PHP 7.3.6 or higher. Check the [required modules list](https://learn.getgrav.org/basics/requirements#php-requirements)
-- Check the [Apache](https://learn.getgrav.org/basics/requirements#apache-requirements) or [IIS](https://learn.getgrav.org/basics/requirements#iis-requirements) requirements
-
-# Documentation
-
-The full documentation can be found from [learn.getgrav.org](https://learn.getgrav.org).
-
-# QuickStart
-
-These are the options to get Grav:
-
-### Downloading a Grav Package
-
-You can download a **ready-built** package from the [Downloads page on https://getgrav.org](https://getgrav.org/downloads)
-
-### With Composer
-
-You can create a new project with the latest **stable** Grav release with the following command:
+## Local Development
 
 ```bash
-composer create-project getgrav/grav ~/webroot/grav
+cd /path/to/drcomp
+php -S localhost:8000 system/router.php
 ```
 
-### From GitHub
+Open http://localhost:8000
 
-1. Clone the Grav repository from [https://github.com/getgrav/grav]() to a folder in the webroot of your server, e.g. `~/webroot/grav`. Launch a **terminal** or **console** and navigate to the webroot folder:
-   ```bash
-   cd ~/webroot
-   git clone https://github.com/getgrav/grav.git
-   ```
+---
 
-2. Install the **plugin** and **theme dependencies** by using the [Grav CLI application](https://learn.getgrav.org/advanced/grav-cli) `bin/grav`:
-   ```bash
-   cd ~/webroot/grav
-   bin/grav install
-   ```
+## Deployment to VPS
 
-Check out the [install procedures](https://learn.getgrav.org/basics/installation) for more information.
+### 1. Server Requirements
 
-# Adding Functionality
+- PHP 8.0+ with extensions: curl, ctype, dom, gd, json, mbstring, openssl, xml, zip
+- Nginx or Apache
+- SSL certificate (Let's Encrypt recommended)
 
-You can download [plugins](https://getgrav.org/downloads/plugins) or [themes](https://getgrav.org/downloads/themes) manually from the appropriate tab on the [Downloads page on https://getgrav.org](https://getgrav.org/downloads), but the preferred solution is to use the [Grav Package Manager](https://learn.getgrav.org/advanced/grav-gpm) or `GPM`:
+### 2. Install Dependencies (Ubuntu/Debian)
 
 ```bash
-bin/gpm index
+sudo apt update
+sudo apt install nginx php8.2-fpm php8.2-cli php8.2-gd php8.2-curl php8.2-mbstring php8.2-xml php8.2-zip unzip
 ```
 
-This will display all the available plugins and then you can install one or more with:
+### 3. Upload Files
 
 ```bash
-bin/gpm install <plugin/theme>
+# From local machine
+rsync -avz --exclude='.git' --exclude='cache/*' --exclude='logs/*' --exclude='tmp/*' \
+  /path/to/drcomp/ user@your-server:/var/www/drcomp/
 ```
 
-# Updating
-
-To update Grav you should use the [Grav Package Manager](https://learn.getgrav.org/advanced/grav-gpm) or `GPM`:
+### 4. Set Permissions
 
 ```bash
-bin/gpm selfupgrade
+sudo chown -R www-data:www-data /var/www/drcomp
+sudo find /var/www/drcomp -type d -exec chmod 755 {} \;
+sudo find /var/www/drcomp -type f -exec chmod 644 {} \;
+sudo chmod -R 775 /var/www/drcomp/cache /var/www/drcomp/logs /var/www/drcomp/images /var/www/drcomp/backup /var/www/drcomp/tmp /var/www/drcomp/user
 ```
 
-To update plugins and themes:
+### 5. Configure Nginx
 
 ```bash
-bin/gpm update
+# Edit nginx.conf - replace drcomp.org with your domain
+# Check PHP socket path: ls /var/run/php/
+
+sudo cp /var/www/drcomp/nginx.conf /etc/nginx/sites-available/drcomp.org
+sudo ln -s /etc/nginx/sites-available/drcomp.org /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default  # optional
+sudo nginx -t
+sudo systemctl reload nginx
 ```
 
-## Upgrading from older version
+### 6. SSL Certificate
 
-* [Upgrading to Grav 1.7](https://learn.getgrav.org/16/advanced/grav-development/grav-17-upgrade-guide)
-* [Upgrading to Grav 1.6](https://learn.getgrav.org/16/advanced/grav-development/grav-16-upgrade-guide)
-* [Upgrading from Grav <1.6](https://learn.getgrav.org/16/advanced/grav-development/grav-15-upgrade-guide)
+```bash
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d drcomp.org -d www.drcomp.org
+```
 
-# Contributing
-We appreciate any contribution to Grav, whether it is related to bugs, grammar, or simply a suggestion or improvement! Please refer to the [Contributing guide](CONTRIBUTING.md) for more guidance on this topic.
+### 7. Clear Cache
 
-## Security issues
-If you discover a possible security issue related to Grav or one of its plugins, please email the core team at contact@getgrav.org and we'll address it as soon as possible.
+```bash
+cd /var/www/drcomp
+sudo -u www-data bin/grav clear-cache
+```
 
-# Getting Started
+---
 
-* [What is Grav?](https://learn.getgrav.org/basics/what-is-grav)
-* [Install](https://learn.getgrav.org/basics/installation) Grav in few seconds
-* Understand the [Configuration](https://learn.getgrav.org/basics/grav-configuration)
-* Take a peek at our available free [Skeletons](https://getgrav.org/downloads/skeletons)
-* If you have questions, jump on our [Discord Chat Server](https://chat.getgrav.org)!
-* Have fun!
+## Admin Panel
 
-# Exploring More
+### Install Admin Plugin
 
-* Have a look at our [Basic Tutorial](https://learn.getgrav.org/basics/basic-tutorial)
-* Dive into more [advanced](https://learn.getgrav.org/advanced) functions
-* Learn about the [Grav CLI](https://learn.getgrav.org/cli-console/grav-cli)
-* Review examples in the [Grav Cookbook](https://learn.getgrav.org/cookbook)
-* More [Awesome Grav Stuff](https://github.com/getgrav/awesome-grav)
+```bash
+cd /var/www/drcomp
+sudo -u www-data bin/gpm install admin
+```
 
-# Backers
-Support Grav with a monthly donation to help us continue development. [[Become a backer](https://opencollective.com/grav/contribute)]
+### Create Admin User
 
-<img src="https://opencollective.com/grav/tiers/backers.svg?avatarHeight=36&width=600" />
+```bash
+cd /var/www/drcomp
+sudo -u www-data bin/plugin login new-user
+```
 
+Follow the prompts:
+- **Username:** admin
+- **Password:** (choose a strong password)
+- **Email:** office@drcomp.org
+- **Permissions:** admin.super
 
-# Supporters
-Support Grav with a monthly donation to help us continue development. [[Become a supporter](https://opencollective.com/grav/contribute)]
+### Access Admin Panel
 
-<img src="https://opencollective.com/grav/tiers/supporters.svg?avatarHeight=36&width=600" />
+```
+https://drcomp.org/admin
+```
 
+Login with the credentials you created.
 
-# Sponsors
-Support Grav with a yearly donation to help us continue development. [[Become a sponsor](https://opencollective.com/grav/contribute)]
+---
 
-<img src="https://opencollective.com/grav/tiers/sponsors.svg?avatarHeight=36&width=600" />
+## Directory Structure
 
-# License
+```
+drcomp/
+├── user/
+│   ├── config/          # Site configuration
+│   │   ├── site.yaml    # Site title, metadata
+│   │   └── system.yaml  # System settings, theme
+│   ├── pages/           # Content pages (Markdown)
+│   │   ├── 01.home/
+│   │   ├── 02.сервиз/
+│   │   ├── 03.gps-навигации/
+│   │   ├── 04.видеонаблюдение/
+│   │   └── 05.контакти/
+│   └── themes/drcomp/   # Custom theme
+│       ├── css/
+│       ├── js/
+│       ├── images/
+│       └── templates/
+├── nginx.conf           # Nginx configuration
+└── README.md
+```
 
-See [LICENSE](LICENSE.txt)
+---
 
+## Editing Content
 
-[gitflow-model]: http://nvie.com/posts/a-successful-git-branching-model/
-[gitflow-extensions]: https://github.com/nvie/gitflow
+### Via Admin Panel (Recommended)
 
-# Running Tests
+1. Go to https://drcomp.org/admin
+2. Login with your admin credentials
+3. Navigate to **Pages** in the sidebar
+4. Click on any page to edit
+5. Use the visual editor or switch to Expert mode for Markdown
+6. Click **Save** when done
 
-First install the dev dependencies by running `composer install` from the Grav root.
+### Via Markdown Files
 
-Then `composer test` will run the Unit Tests, which should be always executed successfully on any site.
-Windows users should use the `composer test-windows` command.
-You can also run a single unit test file, e.g. `composer test tests/unit/Grav/Common/AssetsTest.php`
+Edit files directly in `user/pages/`:
 
-To run phpstan tests, you should run:
+| Page | File |
+|------|------|
+| Home | `01.home/home.md` |
+| Сервиз | `02.сервиз/service.md` |
+| GPS Навигации | `03.gps-навигации/service.md` |
+| Видеонаблюдение | `04.видеонаблюдение/service.md` |
+| Контакти | `05.контакти/contact.md` |
 
-* `composer phpstan` for global tests
-* `composer phpstan-framework` for more strict tests
-* `composer phpstan-plugins` to test all installed plugins
+After editing, clear cache:
+```bash
+sudo -u www-data bin/grav clear-cache
+```
+
+---
+
+## Troubleshooting
+
+### 404 Errors
+
+```bash
+# Check nginx config syntax
+sudo nginx -t
+
+# Check error log
+sudo tail -f /var/log/nginx/drcomp.error.log
+
+# Verify files exist
+ls -la /var/www/drcomp/index.php
+```
+
+### Permission Errors
+
+```bash
+sudo chown -R www-data:www-data /var/www/drcomp
+sudo chmod -R 775 /var/www/drcomp/cache /var/www/drcomp/logs /var/www/drcomp/user
+```
+
+### PHP-FPM Issues
+
+```bash
+# Check PHP version
+php -v
+
+# List available sockets (update nginx.conf accordingly)
+ls /var/run/php/
+
+# Restart PHP-FPM
+sudo systemctl restart php8.2-fpm
+sudo systemctl status php8.2-fpm
+```
+
+### Cache Issues
+
+```bash
+cd /var/www/drcomp
+sudo -u www-data bin/grav clear-cache
+```
+
+---
+
+## Updating Grav
+
+```bash
+cd /var/www/drcomp
+sudo -u www-data bin/gpm selfupgrade
+sudo -u www-data bin/gpm update
+```
+
+---
+
+## Contact Information
+
+- **Phone:** 0431 62692, 0899 662 622, 0899 663 633
+- **Email:** office@drcomp.org
+- **Skype:** drcomp_kz
+- **Facebook:** https://www.facebook.com/drcomp.org
+- **Location:** Kazanlak, Bulgaria
