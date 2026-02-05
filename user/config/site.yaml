@@ -1,0 +1,17 @@
+title: 'Доктор КОМП'
+default_lang: bg
+author:
+  name: 'Доктор КОМП'
+  email: 'office@drcomp.org'
+
+metadata:
+  description: 'Магазин и сервиз за компютри, офис техника и мобилни устройства в Казанлък. Компютърен сервиз, GPS навигации, видеонаблюдение.'
+  keywords: 'компютърен сервиз, ремонт на компютри, GPS навигации, видеонаблюдение, Казанлък, офис техника, лаптопи, компютри'
+  robots: 'index, follow'
+  og:
+    site_name: 'Доктор КОМП'
+    locale: 'bg_BG'
+
+taxonomies:
+  - category
+  - tag

@@ -1,0 +1,297 @@
+<?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+
+/* contact.html.twig */
+class __TwigTemplate_0d3b5e2b9adbc46dee71d15130fce90f46268a9d2fa4d2f614cbf1222b864a23 extends \Twig\Template
+{
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = [
+            'content' => [$this, 'block_content'],
+        ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "partials/base.html.twig";
+    }
+
+    protected function doDisplay(array $context, array $blocks = [])
+    {
+        $this->parent = $this->loadTemplate("partials/base.html.twig", "contact.html.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_content($context, array $blocks = [])
+    {
+        // line 4
+        echo "    <section class=\"page-header\">
+        <div class=\"container\">
+            <h1>";
+        // line 6
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["page"] ?? null), "title", []), "html", null, true);
+        echo "</h1>
+            <p>Свържете се с нас за консултация или запитване</p>
+        </div>
+    </section>
+
+    <section class=\"contact\" style=\"padding-top: 4rem;\">
+        <div class=\"container\">
+            <div class=\"contact-grid\">
+                <div class=\"contact-info\">
+                    <h2>Информация за контакт</h2>
+                    <p>Имате въпроси или се нуждаете от консултация? Свържете се с нас по удобен за вас начин. Ще се радваме да ви помогнем!</p>
+
+                    <div class=\"contact-details\">
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"></path>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Телефони</h4>
+                                <a href=\"tel:043162692\">0431 62692</a> (стационарен)<br>
+                                <a href=\"tel:+359899662622\">0899 662 622</a> (мобилен)<br>
+                                <a href=\"tel:+359899663633\">0899 663 633</a> (мобилен)
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"></path>
+                                    <polyline points=\"22,6 12,13 2,6\"></polyline>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Email</h4>
+                                <a href=\"mailto:office@drcomp.org\">office@drcomp.org</a>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
+                                    <path d=\"M12.069 18.874c-4.023 0-5.82-1.979-5.82-3.464 0-.765.561-1.296 1.333-1.296 1.723 0 1.273 2.477 4.487 2.477 1.641 0 2.55-.895 2.55-1.811 0-.551-.269-1.16-1.354-1.429l-3.576-.895c-2.88-.724-3.403-2.286-3.403-3.751 0-3.047 2.861-4.191 5.549-4.191 2.471 0 5.393 1.373 5.393 3.199 0 .784-.688 1.24-1.453 1.24-1.469 0-1.198-2.037-4.164-2.037-1.469 0-2.292.664-2.292 1.617s1.153 1.258 2.157 1.487l2.637.587c2.891.649 3.624 2.346 3.624 3.944 0 2.476-1.902 4.324-5.722 4.324z\"/>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Skype</h4>
+                                <a href=\"skype:drcomp_kz?call\">drcomp_kz</a>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
+                                    <path d=\"M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z\"></path>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Facebook</h4>
+                                <a href=\"https://www.facebook.com/drcomp.org\" target=\"_blank\" rel=\"noopener\">facebook.com/drcomp.org</a>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"></path>
+                                    <circle cx=\"12\" cy=\"10\" r=\"3\"></circle>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Адрес</h4>
+                                <p>гр. Казанлък, България</p>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>
+                                    <polyline points=\"12 6 12 12 16 14\"></polyline>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Работно време</h4>
+                                <p>Понеделник - Петък: 09:00 - 18:00<br>Събота: 09:00 - 14:00<br>Неделя: Почивен ден</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=\"contact-map\">
+                    <iframe
+                        src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47136.91867712992!2d25.352899!3d42.619444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a9139f5f70fb69%3A0xa00a014cd0e7850!2sKazanlak!5e0!3m2!1sen!2sbg!4v1234567890123!5m2!1sen!2sbg\"
+                        width=\"100%\"
+                        height=\"100%\"
+                        style=\"border:0; min-height: 500px;\"
+                        allowfullscreen=\"\"
+                        loading=\"lazy\"
+                        referrerpolicy=\"no-referrer-when-downgrade\"
+                        title=\"Местоположение на Доктор КОМП в Казанлък\">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "contact.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  46 => 6,  42 => 4,  39 => 3,  29 => 1,);
+    }
+
+    /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
+    public function getSource()
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 1.27 and will be removed in 2.0. Use getSourceContext() instead.', E_USER_DEPRECATED);
+
+        return $this->getSourceContext()->getCode();
+    }
+
+    public function getSourceContext()
+    {
+        return new Source("{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <section class=\"page-header\">
+        <div class=\"container\">
+            <h1>{{ page.title }}</h1>
+            <p>Свържете се с нас за консултация или запитване</p>
+        </div>
+    </section>
+
+    <section class=\"contact\" style=\"padding-top: 4rem;\">
+        <div class=\"container\">
+            <div class=\"contact-grid\">
+                <div class=\"contact-info\">
+                    <h2>Информация за контакт</h2>
+                    <p>Имате въпроси или се нуждаете от консултация? Свържете се с нас по удобен за вас начин. Ще се радваме да ви помогнем!</p>
+
+                    <div class=\"contact-details\">
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"></path>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Телефони</h4>
+                                <a href=\"tel:043162692\">0431 62692</a> (стационарен)<br>
+                                <a href=\"tel:+359899662622\">0899 662 622</a> (мобилен)<br>
+                                <a href=\"tel:+359899663633\">0899 663 633</a> (мобилен)
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"></path>
+                                    <polyline points=\"22,6 12,13 2,6\"></polyline>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Email</h4>
+                                <a href=\"mailto:office@drcomp.org\">office@drcomp.org</a>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
+                                    <path d=\"M12.069 18.874c-4.023 0-5.82-1.979-5.82-3.464 0-.765.561-1.296 1.333-1.296 1.723 0 1.273 2.477 4.487 2.477 1.641 0 2.55-.895 2.55-1.811 0-.551-.269-1.16-1.354-1.429l-3.576-.895c-2.88-.724-3.403-2.286-3.403-3.751 0-3.047 2.861-4.191 5.549-4.191 2.471 0 5.393 1.373 5.393 3.199 0 .784-.688 1.24-1.453 1.24-1.469 0-1.198-2.037-4.164-2.037-1.469 0-2.292.664-2.292 1.617s1.153 1.258 2.157 1.487l2.637.587c2.891.649 3.624 2.346 3.624 3.944 0 2.476-1.902 4.324-5.722 4.324z\"/>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Skype</h4>
+                                <a href=\"skype:drcomp_kz?call\">drcomp_kz</a>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
+                                    <path d=\"M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z\"></path>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Facebook</h4>
+                                <a href=\"https://www.facebook.com/drcomp.org\" target=\"_blank\" rel=\"noopener\">facebook.com/drcomp.org</a>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"></path>
+                                    <circle cx=\"12\" cy=\"10\" r=\"3\"></circle>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Адрес</h4>
+                                <p>гр. Казанлък, България</p>
+                            </div>
+                        </div>
+
+                        <div class=\"contact-detail-item\">
+                            <div class=\"contact-detail-icon\">
+                                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">
+                                    <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>
+                                    <polyline points=\"12 6 12 12 16 14\"></polyline>
+                                </svg>
+                            </div>
+                            <div class=\"contact-detail-text\">
+                                <h4>Работно време</h4>
+                                <p>Понеделник - Петък: 09:00 - 18:00<br>Събота: 09:00 - 14:00<br>Неделя: Почивен ден</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=\"contact-map\">
+                    <iframe
+                        src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47136.91867712992!2d25.352899!3d42.619444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a9139f5f70fb69%3A0xa00a014cd0e7850!2sKazanlak!5e0!3m2!1sen!2sbg!4v1234567890123!5m2!1sen!2sbg\"
+                        width=\"100%\"
+                        height=\"100%\"
+                        style=\"border:0; min-height: 500px;\"
+                        allowfullscreen=\"\"
+                        loading=\"lazy\"
+                        referrerpolicy=\"no-referrer-when-downgrade\"
+                        title=\"Местоположение на Доктор КОМП в Казанлък\">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+", "contact.html.twig", "/Users/boyan/Documents/_DEV/drcomp/user/themes/drcomp/templates/contact.html.twig");
+    }
+}

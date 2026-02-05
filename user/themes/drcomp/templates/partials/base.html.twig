@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: 'bg' }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.summary|striptags|truncate(160) ?: site.metadata.description }}">
+    <meta name="keywords" content="{{ page.taxonomy.tag|join(', ') ?: site.metadata.keywords }}">
+    <meta name="author" content="{{ site.author.name }}">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url(true) }}">
+    <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
+    <meta property="og:description" content="{{ page.summary|striptags|truncate(160) ?: site.metadata.description }}">
+    <meta property="og:locale" content="bg_BG">
+    <meta property="og:site_name" content="{{ site.title }}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page.url(true) }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url('theme://images/favicon.svg') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ url('theme://css/style.css') }}">
+
+    {% block stylesheets %}{% endblock %}
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ site.title }}",
+        "description": "{{ site.metadata.description }}",
+        "url": "{{ base_url_absolute }}",
+        "telephone": "+359899662622",
+        "email": "office@drcomp.org",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Казанлък",
+            "addressCountry": "BG"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "42.6194",
+            "longitude": "25.3986"
+        },
+        "openingHours": "Mo-Fr 09:00-18:00, Sa 09:00-14:00",
+        "priceRange": "$$",
+        "sameAs": [
+            "https://www.facebook.com/drcomp.org"
+        ]
+    }
+    </script>
+</head>
+<body class="{{ page.header.body_classes }}">
+    {% block header %}
+        {% include 'partials/header.html.twig' %}
+    {% endblock %}
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block footer %}
+        {% include 'partials/footer.html.twig' %}
+    {% endblock %}
+
+    <!-- Theme JavaScript -->
+    <script src="{{ url('theme://js/main.js') }}"></script>
+
+    {% block javascripts %}{% endblock %}
+</body>
+</html>
